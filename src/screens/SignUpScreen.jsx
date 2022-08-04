@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	View,
 	Text,
@@ -11,16 +11,42 @@ import Button from "../components/Button";
 
 export default function SignUpScreen(props) {
 	const { navigation } = props;
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.inner}>
 				<Text style={styles.title}>Sign Up</Text>
-				<TextInput value="email address" style={styles.input}></TextInput>
-				<TextInput value="password" style={styles.input}></TextInput>
+				<TextInput
+					style={styles.input}
+					value={email}
+					onChangeText={(text) => {
+						setEmail(text);
+					}}
+					autoCapitalize="none"
+					keyboardType="email-address"
+					placeholder="Email address"
+					textContentType="emailAddress"
+				></TextInput>
+				<TextInput
+					style={styles.input}
+					value={password}
+					onChangeText={(text) => {
+						setPassword(text);
+					}}
+					autoCapitalize="none"
+					placeholder="password"
+					secureTextEntry
+					textContentType="password"
+				></TextInput>
 				<Button
 					label="Submit"
 					onPress={() => {
-						navigation.navigate("MemoList");
+						navigation.reset({
+							index: 0,
+							routes: [{ name: "MemoList" }],
+						});
 					}}
 				/>
 				<View style={styles.footer}>
