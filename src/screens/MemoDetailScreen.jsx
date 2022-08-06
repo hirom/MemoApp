@@ -52,14 +52,17 @@ export default function MemoDetailScreen(props) {
 				style={{ top: 60, buttom: "auto" }}
 				name="pencil"
 				onPress={() => {
-					navigation.navigate("MemoEdit");
+					navigation.navigate("MemoEdit", {
+						id: memo.id,
+						bodyText: memo.bodyText,
+					});
 				}}
 			/>
 		</View>
 	);
 }
 
-MemoEditScreen.prototypes = {
+MemoDetailScreen.prototypes = {
 	route: shape({
 		params: shape({
 			id: string,
